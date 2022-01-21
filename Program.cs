@@ -6,7 +6,7 @@ namespace SnakeNLadder
     {
         static void Main(string[] args)
         {
-            Game.Solution();
+            Game.Play();
         }
     }
 }
