@@ -8,6 +8,7 @@ namespace SnakeNLadder
     internal class Game
     {
         private static int _currentPosition = 0;
+        private static int _finalPosition = 100;
         private const int _optionNoPlay = 0;
         private const int _optionLadder = 1;
         private const int _optionSanke = 2;
@@ -22,10 +23,12 @@ namespace SnakeNLadder
             switch (option)
             {
                 case _optionLadder:
-                    if (position + roll < 100) position += roll;
+                    if (position + roll > 100) position += 0;
+                    else position += roll;
                     break;
                 case _optionSanke:
-                    if (position - roll > 0) position -= roll;
+                    if (position - roll < 0) position = 0;
+                    else position -= roll;
                     break;
             }
             return position;
@@ -33,10 +36,14 @@ namespace SnakeNLadder
         /// <summary>Use this Game class with only this method.</summary>
         public static void Play()
         {
-            int rollDice = random.Next(1, 7);
-            int option = random.Next(0, 3);
-            _currentPosition = UpdatePosition(option, _currentPosition, rollDice);
-            Console.WriteLine($"You got: {option}/{rollDice} and Position is at: {_currentPosition}");
+            while(_currentPosition < _finalPosition)
+            {
+                int rollDice = random.Next(1, 7);
+                int option = random.Next(0, 3);
+                _currentPosition = UpdatePosition(option, _currentPosition, rollDice);
+                Console.WriteLine($"You got: {option}/{rollDice} and Position is at: {_currentPosition}");
+            }
+            Console.WriteLine("Hooray!!!");
         }
     }
 }
