@@ -36,14 +36,16 @@ namespace SnakeNLadder
         /// <summary>Use this Game class with only this method.</summary>
         public static void Play()
         {
+            int count=0;
             while(_currentPosition < _finalPosition)
             {
                 int rollDice = random.Next(1, 7);
                 int option = random.Next(0, 3);
                 _currentPosition = UpdatePosition(option, _currentPosition, rollDice);
                 Console.WriteLine($"You got: {option}/{rollDice} and Position is at: {_currentPosition}");
+                count++;
             }
-            Console.WriteLine("Hooray!!!");
+            Console.WriteLine($"Hooray!!!, after {count} times");
         }
     }
 }
